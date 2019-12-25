@@ -1,0 +1,38 @@
+server:
+  port: 8088
+  tomcat:
+    accesslog:
+      enabled: false
+    basedir: .
+  #  ssl:
+  #    key-store: "classpath:keystore.jks"
+  #    key-store-password: changeit
+  #    enabled: true
+  http:
+    port: 8088
+
+spring:
+  application:
+    name:  weather-report
+  profiles:
+    active: local
+  output:
+    ansi:
+      enabled: ALWAYS
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: '*'
+
+properties:
+  weather-bit-ws-properties:
+    rootUri: https://api.weatherbit.io/
+    connectTimeout: 500000
+    readTimeout: 500000
+    apiKey: 25c6c1a16417488e8daba21fb813d3dc
+    criteriaUri:
+      postal_code: "/v2.0/current?postal_code={postalCode}&country={country}&key={key}"
+      lat_lon: "/v2.0/current?lat={lat}&lon={lon}&key={key}"
